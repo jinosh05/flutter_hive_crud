@@ -46,6 +46,7 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
             await messageBox
                 .add(Message(age: int.parse(_age.text), name: _name.text));
             log("Added data");
+            Navigator.pop(context);
           },
           child: const Text("Add Message")),
     );

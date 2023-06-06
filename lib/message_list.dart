@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hive_crud/add_message.dart';
+import 'package:flutter_hive_crud/message.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class MessageList extends StatefulWidget {
@@ -22,7 +23,20 @@ class _MessageListState extends State<MessageList> {
           if (value.values.isEmpty) {
             return const Text("Empty Box");
           } else {
-            return const Text("Found Data ");
+            return ListView.builder(
+              itemCount: value.values.length,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              itemBuilder: (BuildContext context, int index) {
+                final message = value.getAt(index) as Message;
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(message.name),
+                    Text(message.age.toString()),
+                  ],
+                );
+              },
+            );
           }
         },
       ),
@@ -39,6 +53,5 @@ class _MessageListState extends State<MessageList> {
     );
   }
 }
-
 
 // TextField - Name, Age
