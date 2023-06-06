@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hive_crud/message.dart';
+import 'package:hive/hive.dart';
 
 class AddMessageScreen extends StatefulWidget {
   const AddMessageScreen({super.key});
@@ -34,8 +38,16 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
           ],
         ),
       ),
-      bottomNavigationBar:
-          ElevatedButton(onPressed: () {}, child: const Text("Add Message")),
+      bottomNavigationBar: ElevatedButton(
+          onPressed: () async {
+            var messageBox = await Hive.openBox(
+              "message",
+            );
+            await messageBox
+                .add(Message(age: int.parse(_age.text), name: _name.text));
+            log("Added data");
+          },
+          child: const Text("Add Message")),
     );
   }
 }
