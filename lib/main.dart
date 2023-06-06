@@ -11,7 +11,8 @@ void main(List<String> args) async {
   debugPrint(path.path);
   Hive.init(path.path);
   Hive.registerAdapter(MessageAdapter());
-  runApp(const MaterialApp(home: HomeScreen()));
+  runApp(MaterialApp(
+      theme: ThemeData.dark(useMaterial3: true), home: const HomeScreen()));
 }
 
 class HomeScreen extends StatefulWidget {
