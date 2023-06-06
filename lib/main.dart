@@ -29,7 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {
-            return const MessageList();
+            return MessageList(
+              box: snapshot.data,
+            );
           } else {
             return const Text("error");
           }
