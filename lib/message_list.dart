@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hive_crud/add_message.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class MessageList extends StatefulWidget {
@@ -26,7 +27,13 @@ class _MessageListState extends State<MessageList> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) {
+              return const AddMessageScreen();
+            },
+          ));
+        },
         child: const Icon(Icons.add),
       ),
     );
