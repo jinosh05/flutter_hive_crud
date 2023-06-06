@@ -3,12 +3,14 @@ import 'package:flutter_hive_crud/message_list.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'message.dart';
+
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   final path = await getApplicationDocumentsDirectory();
   debugPrint(path.path);
   Hive.init(path.path);
-
+  Hive.registerAdapter(MessageAdapter());
   runApp(const MaterialApp(home: HomeScreen()));
 }
 
