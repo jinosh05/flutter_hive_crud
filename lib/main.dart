@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hive_crud/message_list.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -8,10 +9,7 @@ void main(List<String> args) async {
   debugPrint(path.path);
   Hive.init(path.path);
 
-  runApp(const MaterialApp(
-      home: Scaffold(
-    body: Center(child: HomeScreen()),
-  )));
+  runApp(const MaterialApp(home: HomeScreen()));
 }
 
 class HomeScreen extends StatefulWidget {
@@ -25,11 +23,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _data(),
+      future: Hive.openBox(
+        "message",
+      ),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {
-            return Text(snapshot.data.toString());
+            return const MessageList();
           } else {
             return const Text("error");
           }
@@ -38,10 +38,5 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
     );
-  }
-
-  Future<int?> _data() async {
-    await Future.delayed(const Duration(seconds: 5));
-    return 3;
   }
 }
