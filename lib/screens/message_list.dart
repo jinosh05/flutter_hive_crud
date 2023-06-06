@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hive_crud/add_message.dart';
+import 'package:flutter_hive_crud/screens/add_message.dart';
 import 'package:flutter_hive_crud/message.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -20,6 +20,7 @@ class _MessageListState extends State<MessageList> {
           "message",
         ).listenable(),
         builder: (BuildContext context, Box value, Widget? _) {
+          debugPrint("Building ${value.values.length}");
           if (value.values.isEmpty) {
             return const Text("Empty Box");
           } else {
