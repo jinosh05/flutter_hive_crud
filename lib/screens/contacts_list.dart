@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hive_crud/screens/add_message.dart';
+import 'package:flutter_hive_crud/screens/add_contact.dart';
 import 'package:flutter_hive_crud/model/message.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -14,10 +14,10 @@ class _MessageListState extends State<MessageList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Messages List ")),
+      appBar: AppBar(title: const Text("Contacts List ")),
       body: ValueListenableBuilder(
         valueListenable: Hive.box(
-          "message",
+          "contacts",
         ).listenable(),
         builder: (BuildContext context, Box value, Widget? _) {
           debugPrint("Building ${value.values.length}");
@@ -32,8 +32,14 @@ class _MessageListState extends State<MessageList> {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(message.name),
-                    Text(message.age.toString()),
+                    Text(
+                      message.name,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    Text(
+                      message.age.toString(),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ],
                 );
               },
@@ -54,5 +60,3 @@ class _MessageListState extends State<MessageList> {
     );
   }
 }
-
-// TextField - Name, Age

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hive_crud/screens/message_list.dart';
+import 'package:flutter_hive_crud/screens/contacts_list.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Hive.openBox(
-        "message",
+        "contacts",
       ),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {

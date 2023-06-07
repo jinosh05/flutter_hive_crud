@@ -19,7 +19,7 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Message UI"),
+        title: const Text("Add Contact Page"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -40,18 +40,15 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
       ),
       bottomNavigationBar: ElevatedButton(
           onPressed: () async {
-            var messageBox = await Hive.openBox(
-              "message",
+            Navigator.pop(context);
+            var contactsBox = await Hive.openBox(
+              "contacts",
             );
-            await messageBox
+            await contactsBox
                 .add(Message(age: int.parse(_age.text), name: _name.text));
             log("Added data");
-            Navigator.pop(context);
           },
-          child: const Text("Add Message")),
+          child: const Text("Add contacts")),
     );
   }
 }
-
-
-// 
