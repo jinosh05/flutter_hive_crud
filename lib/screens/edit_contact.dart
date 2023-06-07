@@ -99,7 +99,7 @@ class _EditContactState extends State<EditContact> {
                       mail: _mail.text,
                       number: int.parse(_number.text),
                       name: _name.text));
-              log("Added data");
+              log("Updated data");
             }
           },
           child: const Text("Add Contacts")),

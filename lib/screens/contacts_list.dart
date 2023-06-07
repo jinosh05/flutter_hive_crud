@@ -122,7 +122,12 @@ class _ContactCard extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    var contactsBox = await Hive.openBox(
+                      "contacts",
+                    );
+                    await contactsBox.deleteAt(index);
+                  },
                   icon: const Icon(
                     Icons.delete_forever_rounded,
                     size: 27,
