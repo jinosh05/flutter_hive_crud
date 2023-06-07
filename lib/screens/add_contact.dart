@@ -14,6 +14,7 @@ class AddMessageScreen extends StatefulWidget {
 
 class _AddMessageScreenState extends State<AddMessageScreen> {
   final TextEditingController _name = TextEditingController();
+  final TextEditingController _mail = TextEditingController();
   final TextEditingController _number = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -51,6 +52,17 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
                   FilteringTextInputFormatter.digitsOnly,
                 ],
                 controller: _number,
+              ),
+            ),
+            TextFormField(
+              controller: _mail,
+              decoration: const InputDecoration(
+                fillColor: Colors.white10,
+                filled: true,
+                hintText: "Mail",
+                icon: Icon(
+                  Icons.mail,
+                ),
               ),
             ),
           ],
