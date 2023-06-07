@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hive_crud/screens/add_message.dart';
-import 'package:flutter_hive_crud/message.dart';
+import 'package:flutter_hive_crud/model/message.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class MessageList extends StatefulWidget {

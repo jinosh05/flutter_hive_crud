@@ -3,7 +3,7 @@ import 'package:flutter_hive_crud/screens/message_list.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'message.dart';
+import 'model/message.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();

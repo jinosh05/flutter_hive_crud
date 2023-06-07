@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hive_crud/message.dart';
+import 'package:flutter_hive_crud/model/message.dart';
 import 'package:hive/hive.dart';
 
 class AddMessageScreen extends StatefulWidget {
