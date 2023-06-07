@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hive_crud/screens/add_contact.dart';
 import 'package:flutter_hive_crud/model/contact.dart';
+import 'package:flutter_hive_crud/screens/edit_contact.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class MessageList extends StatefulWidget {
@@ -102,7 +103,15 @@ class _ContactCard extends StatelessWidget {
             Column(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return EditContact(
+                          message: message,
+                        );
+                      },
+                    ));
+                  },
                   icon: const Icon(
                     Icons.edit_outlined,
                     size: 20,
