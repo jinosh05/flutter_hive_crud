@@ -24,7 +24,7 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Contact Page"),
+        title: const Text("Add Contact"),
       ),
       body: Form(
         key: _form,
@@ -42,10 +42,12 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
                     Icons.person,
                   ),
                 ),
+                validator: validator,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 25),
                 child: TextFormField(
+                  validator: validator,
                   decoration: const InputDecoration(
                     fillColor: Colors.white10,
                     filled: true,
@@ -61,6 +63,7 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
                 ),
               ),
               TextFormField(
+                validator: validator,
                 controller: _mail,
                 decoration: const InputDecoration(
                   fillColor: Colors.white10,
@@ -77,17 +80,28 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
       ),
       bottomNavigationBar: ElevatedButton(
           onPressed: () async {
-            Navigator.pop(context);
-            var contactsBox = await Hive.openBox(
-              "contacts",
-            );
-            await contactsBox.add(Contact(
-                mail: _mail.text,
-                number: int.parse(_number.text),
-                name: _name.text));
-            log("Added data");
+            if (_form.currentState!.validate()) {
+              Navigator.pop(context);
+              var contactsBox = await Hive.openBox(
+                "contacts",
+              );
+              await contactsBox.add(Contact(
+                  mail: _mail.text,
+                  number: int.parse(_number.text),
+                  name: _name.text));
+              log("Added data");
+            }
           },
           child: const Text("Add Contacts")),
     );
+  }
+
+  String? validator(String? value) {
+    if (value == null) {
+      return "Field cannot be Empty";
+    } else if (value.isEmpty) {
+      return "Field cannot be Empty";
+    }
+    return null;
   }
 }
