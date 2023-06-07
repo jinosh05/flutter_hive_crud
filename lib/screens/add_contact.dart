@@ -17,56 +17,62 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
   final TextEditingController _name = TextEditingController();
   final TextEditingController _mail = TextEditingController();
   final TextEditingController _number = TextEditingController();
+
+  final GlobalKey<FormState> _form = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Contact Page"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _name,
-              decoration: const InputDecoration(
-                fillColor: Colors.white10,
-                filled: true,
-                hintText: "Name",
-                icon: Icon(
-                  Icons.person,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 25),
-              child: TextFormField(
+      body: Form(
+        key: _form,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _name,
                 decoration: const InputDecoration(
                   fillColor: Colors.white10,
                   filled: true,
-                  hintText: "Contact Number",
+                  hintText: "Name",
                   icon: Icon(
-                    Icons.phone,
+                    Icons.person,
                   ),
                 ),
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                ],
-                controller: _number,
               ),
-            ),
-            TextFormField(
-              controller: _mail,
-              decoration: const InputDecoration(
-                fillColor: Colors.white10,
-                filled: true,
-                hintText: "Mail",
-                icon: Icon(
-                  Icons.mail,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 25),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    fillColor: Colors.white10,
+                    filled: true,
+                    hintText: "Contact Number",
+                    icon: Icon(
+                      Icons.phone,
+                    ),
+                  ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  controller: _number,
                 ),
               ),
-            ),
-          ],
+              TextFormField(
+                controller: _mail,
+                decoration: const InputDecoration(
+                  fillColor: Colors.white10,
+                  filled: true,
+                  hintText: "Mail",
+                  icon: Icon(
+                    Icons.mail,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: ElevatedButton(
