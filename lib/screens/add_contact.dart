@@ -2,8 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hive_crud/model/message.dart';
 import 'package:hive/hive.dart';
+
+import '../model/contact.dart';
 
 class AddMessageScreen extends StatefulWidget {
   const AddMessageScreen({super.key});
@@ -74,8 +75,10 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
             var contactsBox = await Hive.openBox(
               "contacts",
             );
-            await contactsBox
-                .add(Message(age: int.parse(_number.text), name: _name.text));
+            await contactsBox.add(Contact(
+                mail: _mail.text,
+                number: int.parse(_number.text),
+                name: _name.text));
             log("Added data");
           },
           child: const Text("Add Contacts")),

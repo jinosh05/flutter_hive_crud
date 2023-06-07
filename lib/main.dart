@@ -3,14 +3,14 @@ import 'package:flutter_hive_crud/screens/contacts_list.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'model/message.dart';
+import 'model/contact.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   final path = await getApplicationDocumentsDirectory();
   debugPrint(path.path);
   Hive.init(path.path);
-  Hive.registerAdapter(MessageAdapter());
+  Hive.registerAdapter(ContactAdapter());
   runApp(MaterialApp(
       theme: ThemeData.dark(useMaterial3: true), home: const HomeScreen()));
 }

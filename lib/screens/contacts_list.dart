@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hive_crud/screens/add_contact.dart';
-import 'package:flutter_hive_crud/model/message.dart';
+import 'package:flutter_hive_crud/model/contact.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class MessageList extends StatefulWidget {
@@ -28,7 +28,7 @@ class _MessageListState extends State<MessageList> {
               itemCount: value.values.length,
               padding: const EdgeInsets.symmetric(horizontal: 10),
               itemBuilder: (BuildContext context, int index) {
-                final message = value.getAt(index) as Message;
+                final message = value.getAt(index) as Contact;
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -37,7 +37,7 @@ class _MessageListState extends State<MessageList> {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     Text(
-                      message.age.toString(),
+                      message.number.toString(),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
