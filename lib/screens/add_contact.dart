@@ -14,7 +14,7 @@ class AddMessageScreen extends StatefulWidget {
 
 class _AddMessageScreenState extends State<AddMessageScreen> {
   final TextEditingController _name = TextEditingController();
-  final TextEditingController _age = TextEditingController();
+  final TextEditingController _number = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,12 +36,22 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
                 ),
               ),
             ),
-            TextFormField(
-              decoration: const InputDecoration(),
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              controller: _age,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 25),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  fillColor: Colors.white10,
+                  filled: true,
+                  hintText: "Contact Number",
+                  icon: Icon(
+                    Icons.phone,
+                  ),
+                ),
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                controller: _number,
+              ),
             ),
           ],
         ),
@@ -53,7 +63,7 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
               "contacts",
             );
             await contactsBox
-                .add(Message(age: int.parse(_age.text), name: _name.text));
+                .add(Message(age: int.parse(_number.text), name: _name.text));
             log("Added data");
           },
           child: const Text("Add Contacts")),
