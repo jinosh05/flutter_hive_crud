@@ -102,7 +102,7 @@ class _EditContactState extends State<EditContact> {
               log("Updated data");
             }
           },
-          child: const Text("Add Contacts")),
+          child: const Text("Update Contact")),
     );
   }
 

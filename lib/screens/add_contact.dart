@@ -92,7 +92,7 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
               log("Added data");
             }
           },
-          child: const Text("Add Contacts")),
+          child: const Text("Add Contact")),
     );
   }
 
