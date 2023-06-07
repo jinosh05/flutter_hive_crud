@@ -31,7 +31,10 @@ class _MessageListState extends State<MessageList> {
               itemBuilder: (BuildContext context, int index) {
                 final message = value.getAt(index) as Contact;
 
-                return _ContactCard(message: message);
+                return _ContactCard(
+                  message: message,
+                  index: index,
+                );
               },
             );
           }
@@ -54,9 +57,11 @@ class _MessageListState extends State<MessageList> {
 class _ContactCard extends StatelessWidget {
   const _ContactCard({
     required this.message,
+    required this.index,
   });
 
   final Contact message;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -106,9 +111,7 @@ class _ContactCard extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return EditContact(
-                          message: message,
-                        );
+                        return EditContact(message: message, index: index);
                       },
                     ));
                   },

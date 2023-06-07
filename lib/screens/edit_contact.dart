@@ -6,9 +6,10 @@ import 'package:flutter_hive_crud/model/contact.dart';
 import 'package:hive/hive.dart';
 
 class EditContact extends StatefulWidget {
-  const EditContact({super.key, required this.message});
+  const EditContact({super.key, required this.message, required this.index});
 
   final Contact message;
+  final int index;
   @override
   State<EditContact> createState() => _EditContactState();
 }
@@ -92,10 +93,12 @@ class _EditContactState extends State<EditContact> {
               var contactsBox = await Hive.openBox(
                 "contacts",
               );
-              await contactsBox.add(Contact(
-                  mail: _mail.text,
-                  number: int.parse(_number.text),
-                  name: _name.text));
+              await contactsBox.putAt(
+                  widget.index,
+                  Contact(
+                      mail: _mail.text,
+                      number: int.parse(_number.text),
+                      name: _name.text));
               log("Added data");
             }
           },
