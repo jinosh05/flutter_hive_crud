@@ -29,19 +29,8 @@ class _MessageListState extends State<MessageList> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               itemBuilder: (BuildContext context, int index) {
                 final message = value.getAt(index) as Contact;
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      message.name,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    Text(
-                      message.number.toString(),
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
-                );
+
+                return _ContactCard(message: message);
               },
             );
           }
@@ -56,6 +45,60 @@ class _MessageListState extends State<MessageList> {
           ));
         },
         child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class _ContactCard extends StatelessWidget {
+  const _ContactCard({
+    required this.message,
+  });
+
+  final Contact message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      elevation: 7,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Icon(
+              Icons.person,
+              color: Theme.of(context).colorScheme.secondary,
+              size: Theme.of(context).textTheme.bodyLarge!.fontSize! * 3,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  message.name,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                ),
+                Text(
+                  message.number.toString(),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w200,
+                      ),
+                ),
+                Text(
+                  message.mail,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w200,
+                      ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
