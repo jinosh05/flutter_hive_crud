@@ -22,7 +22,7 @@ class _MessageListState extends State<MessageList> {
         builder: (BuildContext context, Box value, Widget? _) {
           debugPrint("Building ${value.values.length}");
           if (value.values.isEmpty) {
-            return const Text("Empty Box");
+            return const Center(child: Text("Empty Box - No Contents"));
           } else {
             return ListView.builder(
               itemCount: value.values.length,
