@@ -74,26 +74,48 @@ class _ContactCard extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    message.name,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
+                  ),
+                  Text(
+                    message.number.toString(),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontWeight: FontWeight.w200,
+                        ),
+                  ),
+                  Text(
+                    message.mail,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontWeight: FontWeight.w200,
+                        ),
+                  ),
+                ],
+              ),
+            ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  message.name,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.edit_outlined,
+                    size: 20,
+                    color: Colors.greenAccent,
+                  ),
                 ),
-                Text(
-                  message.number.toString(),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        fontWeight: FontWeight.w200,
-                      ),
-                ),
-                Text(
-                  message.mail,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        fontWeight: FontWeight.w200,
-                      ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.delete_forever_rounded,
+                    size: 27,
+                    color: Colors.redAccent,
+                  ),
                 ),
               ],
             )
