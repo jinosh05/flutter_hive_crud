@@ -27,6 +27,14 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
           children: [
             TextFormField(
               controller: _name,
+              decoration: const InputDecoration(
+                fillColor: Colors.white10,
+                filled: true,
+                hintText: "Name",
+                icon: Icon(
+                  Icons.person,
+                ),
+              ),
             ),
             TextFormField(
               decoration: const InputDecoration(),
@@ -48,7 +56,7 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
                 .add(Message(age: int.parse(_age.text), name: _name.text));
             log("Added data");
           },
-          child: const Text("Add contacts")),
+          child: const Text("Add Contacts")),
     );
   }
 }
