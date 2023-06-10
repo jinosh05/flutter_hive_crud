@@ -1,6 +1,6 @@
 # flutter_hive_crud
 
-A new Flutter project.
+Flutter hive Crud operation 
 
 ## Getting Started
 
