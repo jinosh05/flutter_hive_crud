@@ -2,9 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hive_crud/model/contact.dart';
 import 'package:hive/hive.dart';
-
-import '../model/contact.dart';
 
 class AddMessageScreen extends StatefulWidget {
   const AddMessageScreen({super.key});
@@ -79,20 +78,24 @@ class _AddMessageScreenState extends State<AddMessageScreen> {
         ),
       ),
       bottomNavigationBar: ElevatedButton(
-          onPressed: () async {
-            if (_form.currentState!.validate()) {
-              Navigator.pop(context);
-              var contactsBox = await Hive.openBox(
-                "contacts",
-              );
-              await contactsBox.add(Contact(
-                  mail: _mail.text,
-                  number: int.parse(_number.text),
-                  name: _name.text));
-              log("Added data");
-            }
-          },
-          child: const Text("Add Contact")),
+        onPressed: () async {
+          if (_form.currentState!.validate()) {
+            Navigator.pop(context);
+            final contactsBox = await Hive.openBox(
+              "contacts",
+            );
+            await contactsBox.add(
+              Contact(
+                mail: _mail.text,
+                number: int.parse(_number.text),
+                name: _name.text,
+              ),
+            );
+            log("Added data");
+          }
+        },
+        child: const Text("Add Contact"),
+      ),
     );
   }
 

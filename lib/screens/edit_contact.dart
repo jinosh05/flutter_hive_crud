@@ -6,7 +6,7 @@ import 'package:flutter_hive_crud/model/contact.dart';
 import 'package:hive/hive.dart';
 
 class EditContact extends StatefulWidget {
-  const EditContact({super.key, required this.message, required this.index});
+  const EditContact({required this.message, required this.index, super.key});
 
   final Contact message;
   final int index;
@@ -90,7 +90,7 @@ class _EditContactState extends State<EditContact> {
           onPressed: () async {
             if (_form.currentState!.validate()) {
               Navigator.pop(context);
-              var contactsBox = await Hive.openBox(
+              final contactsBox = await Hive.openBox(
                 "contacts",
               );
               await contactsBox.putAt(
@@ -98,11 +98,11 @@ class _EditContactState extends State<EditContact> {
                   Contact(
                       mail: _mail.text,
                       number: int.parse(_number.text),
-                      name: _name.text));
+                      name: _name.text,),);
               log("Updated data");
             }
           },
-          child: const Text("Update Contact")),
+          child: const Text("Update Contact"),),
     );
   }
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hive_crud/screens/add_contact.dart';
 import 'package:flutter_hive_crud/model/contact.dart';
+import 'package:flutter_hive_crud/screens/add_contact.dart';
 import 'package:flutter_hive_crud/screens/edit_contact.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class MessageList extends StatefulWidget {
-  const MessageList({super.key, required this.box});
+  const MessageList({required this.box, super.key});
   final Box? box;
   @override
   State<MessageList> createState() => _MessageListState();
@@ -42,11 +42,14 @@ class _MessageListState extends State<MessageList> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) {
-              return const AddMessageScreen();
-            },
-          ));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const AddMessageScreen();
+              },
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),
@@ -109,11 +112,14 @@ class _ContactCard extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return EditContact(message: message, index: index);
-                      },
-                    ));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return EditContact(message: message, index: index);
+                        },
+                      ),
+                    );
                   },
                   icon: const Icon(
                     Icons.edit_outlined,
@@ -123,7 +129,7 @@ class _ContactCard extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () async {
-                    var contactsBox = await Hive.openBox(
+                    final contactsBox = await Hive.openBox(
                       "contacts",
                     );
                     await contactsBox.deleteAt(index);
@@ -135,7 +141,7 @@ class _ContactCard extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

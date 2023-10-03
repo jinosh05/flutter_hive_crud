@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hive_crud/model/contact.dart';
 import 'package:flutter_hive_crud/screens/contacts_list.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-
-import 'model/contact.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,8 +10,12 @@ void main(List<String> args) async {
   debugPrint(path.path);
   Hive.init(path.path);
   Hive.registerAdapter(ContactAdapter());
-  runApp(MaterialApp(
-      theme: ThemeData.dark(useMaterial3: true), home: const HomeScreen()));
+  runApp(
+    MaterialApp(
+      theme: ThemeData.dark(useMaterial3: true),
+      home: const HomeScreen(),
+    ),
+  );
 }
 
 class HomeScreen extends StatefulWidget {
